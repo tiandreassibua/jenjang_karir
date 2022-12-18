@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import db from "./db.js";
 import routePegawai from "./routes/pegawai.js";
 import routeKinerja from "./routes/kinerja.js";
 import routeGolongan from "./routes/golongan.js";
@@ -17,7 +18,11 @@ app.use("/api/pegawai", routePegawai);
 app.use("/api/kinerja", routeKinerja);
 app.use("/api/golongan", routeGolongan);
 
-
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${process.env.PORT}`);
+db.connect((err) => {
+  if (err) {
+    throw err;
+  }
+  app.listen(process.env.PORT, () => {
+    console.log(`Server is running on port ${process.env.PORT}`);
+  });
 });

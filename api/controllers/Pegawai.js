@@ -14,7 +14,7 @@ export const getPegawai = async (req, res) => {
 export const getPegawaiByNip = async (req, res) => {
     try {
         const nip = req.params.nip;
-        const q = `SELECT p.*, CONCAT(k.golongan,'/',g.jabatan) as 'golongan', k.tanggal_berlaku
+        const q = `SELECT p.*, k.golongan, g.jabatan, k.tanggal_berlaku
                     FROM pegawai p
                         INNER JOIN kinerja k ON p.nip = k.nip
                         INNER JOIN golongan g ON k.golongan = g.golongan 

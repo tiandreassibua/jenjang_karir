@@ -10,9 +10,4 @@ export const db = mysql.createConnection({
     database: process.env.DB_NAME
 });
 
-// connect to the database
-db.connect((err) => {
-    if (err) {
-        throw err;
-    }
-});
+export default db
